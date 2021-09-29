@@ -29,11 +29,24 @@ import ReactDOM from "react-dom";
 
 //++++++ use Hooks+++++++
 const App = () => {
+  // Hooks
   const [count, setCount] = useState(0);
+  const [email, setEmail] = useState("");
+  
+  // function
+  const updateEmail = e => {
+    const {target: {value}} = e;
+    setEmail(value);
+  }
+
+  // return
   return (
     <>
     {count}
-    <button onClick={()=> setCount(count +1)}>Increment</button>
+    <button onClick={()=> setCount(count + 1)}>Increment</button>
+    <button onClick={()=> setCount(count - 1)}>Decrement</button>
+    <input placeholder="Email" value={email} onChange={updateEmail} />
+  
     </>
   )
 }
