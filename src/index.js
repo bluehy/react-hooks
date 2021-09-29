@@ -34,6 +34,8 @@ const App = () => {
   const [email, setEmail] = useState("");
   
   // function
+  const DecrementItem = () => setCount(count - 1);
+  
   const updateEmail = e => {
     const {target: {value}} = e;
     setEmail(value);
@@ -44,7 +46,7 @@ const App = () => {
     <>
     {count}
     <button onClick={()=> setCount(count + 1)}>Increment</button>
-    <button onClick={()=> setCount(count - 1)}>Decrement</button>
+    <button onClick={DecrementItem}>Decrement</button>
     <input placeholder="Email" value={email} onChange={updateEmail} />
   
     </>
