@@ -70,7 +70,7 @@ import ReactDOM from "react-dom";
     };
     return (
       {
-        currentItem: allTabs[currentIndex],
+        currentTab: allTabs[currentIndex],
         changeItem: setCurrentIndex
       }
     );
@@ -99,10 +99,10 @@ const App = () => {
   const email = useInput("Email");
 
   
-  const { currentItem, changeItem } = useTabs(0, content);
+  const { currentTab, changeItem } = useTabs(0, content);
   
 
-  
+
   // return
   return (
     <>
@@ -120,7 +120,7 @@ const App = () => {
 
     <h3>-useTabs</h3>
     {content.map((section, index) => <button onClick={()=>changeItem(index)}>{section.tab}</button>)}
-    <div>{currentItem.content}</div>
+    <div>{currentTab.content}</div>
     </>
   )
 }
