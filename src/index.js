@@ -31,15 +31,15 @@ import ReactDOM from "react-dom";
 const App = () => {
   // Hooks_useState
   const [count, setCount] = useState(0);
-  const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");
   // function
   // arrow function
   const DecrementItem = () => setCount(count - 1); 
 
-  const updateEmail = e => {
-    const {target: {value}} = e;
-    setEmail(value);
-  }
+  // const updateEmail = e => {
+  //   const {target: {value}} = e;
+  //   setEmail(value);
+  // }
   
   // useInput
   const useInput = (initialValue) => {
@@ -57,6 +57,7 @@ const App = () => {
 
   // return
   const name = useInput("Ms.")
+  const email = useInput("Email")
   return (
     <>
     <h2>useState</h2>
@@ -68,7 +69,8 @@ const App = () => {
     {/* <input placeholder="Name" value={name.value} onChange={name.onChange}/> */}
     <input placeholder="Name" {...name}/>
     {/* spread 연산자  */}
-    <input placeholder="Email" value={email} onChange={updateEmail} />
+    {/* <input placeholder="Email" value={email} onChange={updateEmail} /> */}
+    <input placeholder="Email" {...email} />
     </>
   )
 }
