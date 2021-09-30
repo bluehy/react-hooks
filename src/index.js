@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
 
@@ -117,6 +117,11 @@ const App = () => {
   const { currentTab, changeItem } = useTabs(0, content);
   
 
+  // ++++++++++Hooks_useEffect++++++++++++++++
+  const sayHello = () => console.log("hello");
+  const [number, setNumber] = useState(0);
+  const [aNumber, setANumber] = useState(0);
+  useEffect(sayHello, [number]);
 
   // return
   return (
@@ -138,7 +143,8 @@ const App = () => {
     <div>{currentTab.content}</div>
 
     <Category>useEffect</Category>
-    
+    <button onClick={() => setNumber(number + 1)}>{number}</button>
+    <button onClick={() => setANumber(aNumber + 1)}>{aNumber}</button>
     </>
   )
 }
