@@ -68,9 +68,9 @@ const App = () => {
   const notMail = value => !value.includes("@");
   // value값에 @가 포함되어있는지 검증. (포함되어있지 않다면 true)
   const isMail = value => value.includes("@");
-  // @고 포함되어있다면 true
+  // @고 포함되어있다면 true -> 이대로 사용하면 @만 입력가능.
   const name = useInput("Ms.", maxL);
-  const email = useInput("Email", isMail);
+  const email = useInput("Email");
   return (
     <>
     <h2>useState</h2>
@@ -86,7 +86,7 @@ const App = () => {
     <input placeholder="Email" {...email} />
 
     <h3>-useTabs</h3>
-    
+
     </>
   )
 }
