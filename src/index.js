@@ -91,6 +91,18 @@ const Example = styled.h3`
     );
   };
 
+// useEffect _ useTitle
+const useTitle = (initialTitle) => {
+  const [title, setTitle] = useState(initialTitle);
+  const updateTitle = () => {
+    const htmlTitle = document.querySelector("title")
+    htmlTitle.innerText = title;
+  }
+  useEffect(updateTitle, [title]);
+  return setTitle;
+}
+  
+
 const App = () => {
   // ++++++++++Hooks_useState++++++++++++++++
   const [count, setCount] = useState(0);
@@ -122,6 +134,10 @@ const App = () => {
   const [number, setNumber] = useState(0);
   const [aNumber, setANumber] = useState(0);
   useEffect(sayHello, [number]);
+
+
+  const titleUpdater = useTitle("Loading...");
+  setTimeout(() => titleUpdater("Home"), 5000);
 
   // return
   return (
