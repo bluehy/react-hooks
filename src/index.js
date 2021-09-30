@@ -65,8 +65,12 @@ const App = () => {
   // return
   const maxL = value => value.length <= 10;
   // value값의 길이가 10보다 작은지 검증. (작다면 true)
+  const notMail = value => !value.includes("@");
+  // value값에 @가 포함되어있는지 검증. (포함되어있지 않다면 true)
+  const isMail = value => value.includes("@");
+  // @고 포함되어있다면 true
   const name = useInput("Ms.", maxL);
-  const email = useInput("Email");
+  const email = useInput("Email", isMail);
   return (
     <>
     <h2>useState</h2>
@@ -80,6 +84,9 @@ const App = () => {
     {/* spread 연산자  */}
     {/* <input placeholder="Email" value={email} onChange={updateEmail} /> */}
     <input placeholder="Email" {...email} />
+
+    <h3>-useTabs</h3>
+    
     </>
   )
 }
