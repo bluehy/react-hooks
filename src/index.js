@@ -45,7 +45,11 @@ const App = () => {
   const useInput = (initialValue) => {
     const [value, setValue] = useState(initialValue);
     const onChange = (event) => {
-      console.log(event.target)
+      // console.log(event.target)
+      const {
+        target : {value}
+      } = event;
+      setValue(value);
     }
     return { value, onChange };
   }
@@ -55,11 +59,12 @@ const App = () => {
   const name = useInput("Ms.")
   return (
     <>
+    <h2>useState</h2>
     {count}
     <button onClick={()=> setCount(count + 1)}>Increment</button>
     <button onClick={DecrementItem}>Decrement</button>
 
-    <h2> useInput </h2>
+    <h3>-useInput</h3>
     {/* <input placeholder="Name" value={name.value} onChange={name.onChange}/> */}
     <input placeholder="Name" {...name}/>
     {/* spread 연산자  */}
