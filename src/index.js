@@ -1,5 +1,20 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
+import styled from "styled-components";
+
+const Category = styled.h2`
+  font-size: 32px;
+  background-color: #1C0C5B;
+  color: #FAEEE0;
+  width: 200px;
+  text-align: center;
+`;
+
+const Example = styled.h3`
+  font-size: 18px;
+  color: #1C0C5B;
+  text-shadow: 1px 1px 2px blueviolet;
+`;
 
 // 
 // class App extends React.Component {
@@ -106,21 +121,24 @@ const App = () => {
   // return
   return (
     <>
-    <h2>useState</h2>
+    <Category>useState</Category>
     {count}
     <button onClick={()=> setCount(count + 1)}>Increment</button>
     <button onClick={DecrementItem}>Decrement</button>
 
-    <h3>-useInput</h3>
+    <Example># useInput</Example>
     {/* <input placeholder="Name" value={name.value} onChange={name.onChange}/> */}
     <input placeholder="Name" {...name}/>
     {/* spread 연산자  */}
     {/* <input placeholder="Email" value={email} onChange={updateEmail} /> */}
     <input placeholder="Email" {...email} />
 
-    <h3>-useTabs</h3>
+    <Example># useTabs</Example>
     {content.map((section, index) => <button onClick={()=>changeItem(index)}>{section.tab}</button>)}
     <div>{currentTab.content}</div>
+
+    <Category>useEffect</Category>
+    
     </>
   )
 }
