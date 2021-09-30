@@ -42,22 +42,31 @@ const App = () => {
   // }
   
   // useInput
-  const useInput = (initialValue) => {
+  // value값을 검증하는 검증 단계 추가
+  const useInput = (initialValue, validator) => {
     const [value, setValue] = useState(initialValue);
     const onChange = (event) => {
       // console.log(event.target)
       const {
         target : {value}
       } = event;
-      setValue(value);
+      let willUpdate = true;
+      if(typeof validator === "function"){
+        willUpdate = validator(value);
+      }
+      if(willUpdate){
+        setValue(value);
+      }
     }
     return { value, onChange };
   }
 
 
   // return
-  const name = useInput("Ms.")
-  const email = useInput("Email")
+  const maxL = value => value.length <= 10;
+  // value값의 길이가 10보다 작은지 검증. (작다면 true)
+  const name = useInput("Ms.", maxL);
+  const email = useInput("Email");
   return (
     <>
     <h2>useState</h2>
