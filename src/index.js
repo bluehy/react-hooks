@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
 
+import UseTitleApp from "./useTitle";
+
 const Category = styled.h2`
   font-size: 32px;
   background-color: #1C0C5B;
@@ -92,15 +94,15 @@ const Example = styled.h3`
   };
 
 // useEffect _ useTitle
-const useTitle = (initialTitle) => {
-  const [title, setTitle] = useState(initialTitle);
-  const updateTitle = () => {
-    const htmlTitle = document.querySelector("title")
-    htmlTitle.innerText = title;
-  }
-  useEffect(updateTitle, [title]);
-  return setTitle;
-}
+// const useTitle = (initialTitle) => {
+//   const [title, setTitle] = useState(initialTitle);
+//   const updateTitle = () => {
+//     const htmlTitle = document.querySelector("title")
+//     htmlTitle.innerText = title;
+//   }
+//   useEffect(updateTitle, [title]);
+//   return setTitle;
+// }
   
 
 const App = () => {
@@ -136,9 +138,10 @@ const App = () => {
   useEffect(sayHello, [number]);
 
 
-  const titleUpdater = useTitle("Loading...");
-  setTimeout(() => titleUpdater("Home"), 5000);
-
+  // const titleUpdater = useTitle("Loading...");
+  // setTimeout(() => titleUpdater("Home"), 5000);
+  UseTitleApp();
+  
   // return
   return (
     <>
@@ -161,6 +164,7 @@ const App = () => {
     <Category>useEffect</Category>
     <button onClick={() => setNumber(number + 1)}>{number}</button>
     <button onClick={() => setANumber(aNumber + 1)}>{aNumber}</button>
+
     </>
   )
 }
