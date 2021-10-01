@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import styled from "styled-components";
 
 import UseTitleApp from "./useTitle";
+import useTabs  from "./useTabs";
+import useInput from "./useInput";
 
 const Category = styled.h2`
   font-size: 32px;
@@ -46,65 +48,7 @@ const Example = styled.h3`
 
 
 //++++++ use Hooks+++++++
-
-  // useInput
-  // value값을 검증하는 검증 단계 추가
-  const useInput = (initialValue, validator) => {
-    const [value, setValue] = useState(initialValue);
-    const onChange = (event) => {
-      // console.log(event.target)
-      const {
-        target : {value}
-      } = event;
-      let willUpdate = true;
-      if(typeof validator === "function"){
-        willUpdate = validator(value);
-      }
-      if(willUpdate){
-        setValue(value);
-      }
-    }
-    return { value, onChange };
-  };
-
-  // useTabs
-  const content = [
-    {
-      tab: "Section 1",
-      content: "I'm the content of the Section 1",
-    },
-    {
-      tab: "Section 2",
-      content: "I'm the content of the Section 2",
-    }
-    ];
-
-  const useTabs = (initialTab, allTabs) => {
-    const [currentIndex, setCurrentIndex] = useState(initialTab);
-    // allTabs가 배열인지 확인하는 과정
-    if (!allTabs || !Array.isArray(allTabs)) {
-      return;
-    };
-    return (
-      {
-        currentTab: allTabs[currentIndex],
-        changeItem: setCurrentIndex
-      }
-    );
-  };
-
-// useEffect _ useTitle
-// const useTitle = (initialTitle) => {
-//   const [title, setTitle] = useState(initialTitle);
-//   const updateTitle = () => {
-//     const htmlTitle = document.querySelector("title")
-//     htmlTitle.innerText = title;
-//   }
-//   useEffect(updateTitle, [title]);
-//   return setTitle;
-// }
   
-
 const App = () => {
   // ++++++++++Hooks_useState++++++++++++++++
   const [count, setCount] = useState(0);
@@ -127,7 +71,16 @@ const App = () => {
   const name = useInput("Ms.", maxL);
   const email = useInput("Email");
 
-  
+  const content = [
+    {
+      tab: "Section 1",
+      content: "I'm the content of the Section 1",
+    },
+    {
+      tab: "Section 2",
+      content: "I'm the content of the Section 2",
+    }
+    ];
   const { currentTab, changeItem } = useTabs(0, content);
   
 
