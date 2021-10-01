@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
 
-import UseTitleApp from "./useTitle";
-import useTabs  from "./useTabs";
 import useInput from "./useInput";
+import useTabs  from "./useTabs";
+import UseTitleApp from "./useTitle";
 
 const Category = styled.h2`
   font-size: 32px;
@@ -45,7 +45,6 @@ const Example = styled.h3`
 //     )
 //   }
 // }
-
 
 //++++++ use Hooks+++++++
   
