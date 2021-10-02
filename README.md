@@ -3,14 +3,16 @@
 Collection of React Hooks ready to install with NPM
 
 
-- [ ] useTitle
+- [x] useTitle
    <!-- useTitle : react document의 title을 몇개의 Hooks와 함께 바꾸는 기능 -->
-- [ ] useInput
+- [x] useTabs
+   <!-- useTabs : 클릭한 tab에 따라 보여지는 컨텐츠가 따로 등장. -->
+- [x] useInput
    <!-- input기능 -->
-- [ ] usePageLeave
-   <!-- 유저가 page를 벗어나는 시점을 발견하고 함수를 실행하는 기능 -->
 - [ ] useClick
    <!-- 유저가 element를 클릭하는 시점을 발견 -->
+- [ ] usePageLeave
+   <!-- 유저가 page를 벗어나는 시점을 발견하고 함수를 실행하는 기능 -->
 - [ ] useFadeIn
    <!-- 어떤 element든 상관없이 애니메이션을 Element안으로 서서히 페이드인 -->
 - [ ] useFullscreen

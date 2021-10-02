@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
 
@@ -93,6 +93,14 @@ const App = () => {
   // const titleUpdater = useTitle("Loading...");
   // setTimeout(() => titleUpdater("Home"), 5000);
   UseTitleApp();
+
+  // ++++++++++Hooks_useClick+++++++++++++++
+  const input = useRef();
+  // component의 부분을 선택할 수 있는 방법 (document.getElementByID()와 같은 기능) _ hrml에 접근이 가능.
+  setTimeout(()=> console.log(input), 5000)
+  setTimeout(()=> console.log(input.current), 5000)
+  setTimeout(()=> console.log(input.current.focus()), 5000)
+  // input으로 focus된다.
   
   // return
   return (
@@ -117,6 +125,8 @@ const App = () => {
     <button onClick={() => setNumber(number + 1)}>{number}</button>
     <button onClick={() => setANumber(aNumber + 1)}>{aNumber}</button>
 
+    <category>useClick</category>
+    <input ref={input} placeholder="la" />
     </>
   )
 }
