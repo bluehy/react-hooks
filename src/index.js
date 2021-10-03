@@ -112,8 +112,8 @@ const App = () => {
     })
     return element;
   }
-  const sayHello = () => console.log("Hello");
-  const title = useClick(sayHello);
+  const sayHi = () => console.log("Hi");
+  const title = useClick(sayHi);
   
   // return
   return (
@@ -142,7 +142,7 @@ const App = () => {
     <input ref={input} placeholder="la" />
 
     <Category>useClick</Category>
-    <h1 ref={title}>Hi</h1>
+    <h3 ref={title}>Hi</h3>
     </>
   )
 }
