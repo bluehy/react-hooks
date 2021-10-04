@@ -6,6 +6,7 @@ import useInput from "./useInput";
 import useTabs  from "./useTabs";
 import UseTitleApp from "./useTitle";
 import useClick from "./useClick";
+import useConfirm from "./useConfirm";
 
 const Category = styled.h2`
   font-size: 32px;
@@ -48,21 +49,6 @@ const Example = styled.h3`
 // }
 
 //++++++ use Hooks+++++++
-  // ++++++++++++useConfirm++++++++++++++++++++
-  // useEffect, useState를 사용하지 않는 함수형 function
-  const useConfirm = (message = "", callback, rejection) => {
-    if(typeof callback !== "function") {
-      return;
-    }
-    const confirmAction = () => {
-      if(window.confirm(message)){
-        callback();
-      }else{
-        rejection();
-      }
-    };
-    return confirmAction;
-  };
   
 const App = () => {
   // ++++++++++Hooks_useState++++++++++++++++
@@ -123,9 +109,9 @@ const App = () => {
   const title = useClick(sayHi);
 
   // ++++++++++++useConfirm++++++++++++++++++++
-    const deleteWorld = () => console.log("Deleting the world...");
-    const abort = () => console.log("Aborted");
-    const confirmDelete = useConfirm("Are you sure", deleteWorld, abort);
+  const deleteWorld = () => console.log("Deleting the world...");
+  const abort = () => console.log("Aborted");
+  const confirmDelete = useConfirm("Are you sure", deleteWorld, abort);
 
   // return
   return (
