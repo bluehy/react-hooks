@@ -56,7 +56,7 @@ const usePreventLeave = () => {
     e.preventDefault();
     // 페이지를 나가기 전에 작동될 수 있게끔 해주고,
     e.returnValue = "";
-    // reload 후에도 해당 기능이 작동될 수 있게 설정해준다.
+    // 이 코드가 없는 경우, reload한 후에 해당 이벤트가 더 추가가 되지 않는다.
   }
   const enablePrevent = () => window.addEventListener("beforeunload", listener);
   const disablePrevent = () => window.removeEventListener("beforeunload", listener);
@@ -129,6 +129,12 @@ const App = () => {
   // +++++++++++++usePreventLeave++++++++++
     const {enablePrevent, disablePrevent} = usePreventLeave();
     // 이벤트가 발생하면 브라우져가 이벤트 정보를 담은 객체를 생성해서 핸들러의 인수 형태로 전달해 주기 때문에 자동으로 들어가지는 겁니다.
+    // 저거 json으로 리턴한 거에요. 실제로 따지고보면
+    // {
+    //   enablePrevent : enablePrevent,
+    //   disablePrevent: disablePrevent,
+    // }
+    // 를 축약해서 작성한 것이고 값을 받아 오려면 해당 함수명을 가지고 와야겠죠.
 
   // return
   return (
