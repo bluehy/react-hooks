@@ -17,7 +17,7 @@ Collection of React Hooks ready to install with NPM
 - [x] useConfirm
    <!-- confirm 받는 기능 -->
 - [ ] usePreventLeave
-   <!-- 유저가 저장되지않은 정보를 저장하지 않고 페이지를 벗어날 때 확인하는 기능 -->
+   <!-- 유저가 저장되지않은 정보를 저장하지 않고 페이지를 벗어날 때 "아직 저장 안됐어!" 라고 확인하는 기능 -->
 - [ ] usePageLeave
    <!-- 유저가 page를 벗어나는 시점을 발견하고 함수를 실행하는 기능 -->
 - [ ] useFadeIn

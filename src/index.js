@@ -12,7 +12,7 @@ const Category = styled.h2`
   font-size: 32px;
   background-color: #1C0C5B;
   color: #FAEEE0;
-  width: 200px;
+  width: 300px;
   text-align: center;
 `;
 
@@ -49,6 +49,19 @@ const Example = styled.h3`
 // }
 
 //++++++ use Hooks+++++++
+
+// +++++++++++++usePreventLeave++++++++++
+const usePreventLeave = () => {
+  const listener = (e) => {
+    e.preventDefault();
+    // 페이지를 나가기 전에 작동될 수 있게끔 해주고,
+    e.returnValue = "";
+    // reload 후에도 해당 기능이 작동될 수 있게 설정해준다.
+  }
+  const enablePrevent = () => window.addEventListener("beforeunload", listener);
+  const disablePrevent = () => window.removeEventListener("beforeunload", listener);
+  return {enablePrevent, disablePrevent};
+};
   
 const App = () => {
   // ++++++++++Hooks_useState++++++++++++++++
@@ -113,6 +126,10 @@ const App = () => {
   const abort = () => console.log("Aborted");
   const confirmDelete = useConfirm("Are you sure", deleteWorld, abort);
 
+  // +++++++++++++usePreventLeave++++++++++
+    const {enablePrevent, disablePrevent} = usePreventLeave();
+    // 이벤트가 발생하면 브라우져가 이벤트 정보를 담은 객체를 생성해서 핸들러의 인수 형태로 전달해 주기 때문에 자동으로 들어가지는 겁니다.
+
   // return
   return (
     <>
@@ -144,6 +161,11 @@ const App = () => {
 
     <Category>useConfirm</Category>
     <button onClick={confirmDelete}>Delete the world</button>
+
+    <Category>usePreventLeave</Category>
+    <button onClick={enablePrevent}>Protect</button>
+    {/* ↑ 버튼을 클릭시 이벤트리스너가 추가되어 이후 페이지를 닫을 때, 확인하는 문구가 출력된다. */}
+    <button onClick={disablePrevent}>Unprotect</button>
     </>
   )
 }
