@@ -48,6 +48,21 @@ const Example = styled.h3`
 // }
 
 //++++++ use Hooks+++++++
+  // ++++++++++++useConfirm++++++++++++++++++++
+  // useEffect, useState를 사용하지 않는 함수형 function
+  const useConfirm = (message = "", callback, rejection) => {
+    if(typeof callback !== "function") {
+      return;
+    }
+    const confirmAction = () => {
+      if(window.confirm(message)){
+        callback();
+      }else{
+        rejection();
+      }
+    };
+    return confirmAction;
+  };
   
 const App = () => {
   // ++++++++++Hooks_useState++++++++++++++++
@@ -103,9 +118,15 @@ const App = () => {
   setTimeout(()=> console.log(input.current.focus()), 5000)
   // input으로 focus된다.
 
+  // +++++++++++useClick+++++++++++++++++++++
   const sayHi = () => console.log("Hi");
   const title = useClick(sayHi);
-  
+
+  // ++++++++++++useConfirm++++++++++++++++++++
+    const deleteWorld = () => console.log("Deleting the world...");
+    const abort = () => console.log("Aborted");
+    const confirmDelete = useConfirm("Are you sure", deleteWorld, abort);
+
   // return
   return (
     <>
@@ -134,6 +155,9 @@ const App = () => {
 
     <Category>useClick</Category>
     <h3 ref={title}>Hi</h3>
+
+    <Category>useConfirm</Category>
+    <button onClick={confirmDelete}>Delete the world</button>
     </>
   )
 }
