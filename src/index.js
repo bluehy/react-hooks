@@ -63,6 +63,23 @@ const usePreventLeave = () => {
   return {enablePrevent, disablePrevent};
 };
   
+
+// ++++++++++++useBeforeLeave+++++++++++++
+const useBeforeLeave = (onBefore) => {
+  if(typeof onBefore !== "function") {
+    return;
+  }
+  const handle = () => {
+    // console.log("leaving");
+    onBefore();
+  }
+  useEffect(() => {
+    document.addEventListener("mouseleave", handle);
+    return () => document.removeEventListener("mouseleave",handle);
+  },[]);
+};
+
+
 const App = () => {
   // ++++++++++Hooks_useState++++++++++++++++
   const [count, setCount] = useState(0);
@@ -136,7 +153,10 @@ const App = () => {
     // }
     // 를 축약해서 작성한 것이고 값을 받아 오려면 해당 함수명을 가지고 와야겠죠.
 
-  // return
+  // ++++++++++useBeforeLeave +++++++++++++++++
+    const begForLife = () => console.log("Pls don't leave.");
+    useBeforeLeave(begForLife);
+  
   return (
     <>
     <Category>useState</Category>
@@ -172,6 +192,10 @@ const App = () => {
     <button onClick={enablePrevent}>Protect</button>
     {/* ↑ 버튼을 클릭시 이벤트리스너가 추가되어 이후 페이지를 닫을 때, 확인하는 문구가 출력된다. */}
     <button onClick={disablePrevent}>Unprotect</button>
+
+    <Category>useBeforeLeave</Category>
+    <h3>Hello</h3>
+
     </>
   )
 }

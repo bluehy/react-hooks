@@ -18,8 +18,8 @@ Collection of React Hooks ready to install with NPM
    <!-- confirm 받는 기능 -->
 - [x] usePreventLeave
    <!-- 유저가 저장되지않은 정보를 저장하지 않고 페이지를 벗어날 때 "아직 저장 안됐어!" 라고 확인하는 기능 -->
-- [ ] usePageLeave
-   <!-- 유저가 page를 벗어나는 시점을 발견하고 함수를 실행하는 기능 -->
+- [ ] useBeforeLeave
+   <!-- 유저가 page를 벗어나는 시점(브라우저화면에서 마우스가 벗어날 때)을 발견하고 함수를 실행하는 기능 -->
 - [ ] useFadeIn
    <!-- 어떤 element든 상관없이 애니메이션을 Element안으로 서서히 페이드인 -->
 - [ ] useFullscreen
