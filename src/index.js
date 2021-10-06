@@ -86,12 +86,15 @@ const useBeforeLeave = (onBefore) => {
 };
 
 // +++++++++useFadeIn+++++++++++++++++++++++
-const useFadeIn = () => {
+const useFadeIn = (duration = 1, delay = 0) => {
   const element = useRef();
   useEffect(()=>{
+    if(typeof duration !== "number" || typeof delay !== "number"){
+      return;
+    }
     if(element.current){
       const {current} = element;
-      current.style.transition = `opacity 3s`;
+      current.style.transition = `opacity ${duration}s ease-in-out ${delay}s`;
       current.style.opacity = 1;
     }
   },[]);
@@ -178,8 +181,8 @@ const App = () => {
 
     
   // +++++++++useFadeIn++++++++++++++++++++++++
-    const fadeInH3 = useFadeIn();
-    const fadeInP = useFadeIn();
+    const fadeInH3 = useFadeIn(2);
+    const fadeInP = useFadeIn(2,2);
 
   return (
     <>
