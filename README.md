@@ -24,12 +24,12 @@ Collection of React Hooks ready to install with NPM
    <!-- 어떤 element든 상관없이 애니메이션을 Element에 적용할 수 있는 hook제작. 서서히 페이드인 -->
 - [x] useNetwork
    <!-- online offline 감지 -->
+- [ ] useScroll
+   <!-- 스크롤동작 감지 -->
 - [ ] useFullscreen
    <!-- element를 풀스크린으로 만들거나 일반화면으로 -->
 - [ ] useNotification
    <!-- notification API를 사용할 때 유저에게 알림을 보내준다. -->
-- [ ] useScroll
-   <!-- 스크롤동작 감지 -->
 - [ ] useAxios
    <!-- HTTP requests client axios 를 위한 일종의 wrapper. axios를 둘러싸는? 기능 -->
 
