@@ -205,7 +205,10 @@ const App = () => {
     const fadeInP = useFadeIn(2,2);
 
   // +++++++++++++useNetwork+++++++++++++++
-    const onLine = useNetwork();
+    const handleNetworkChange = (online) => {
+      console.log(online ? "We just went online" : "We are offline");
+    }
+    const onLine = useNetwork(handleNetworkChange);
 
   // return ()
   return (
