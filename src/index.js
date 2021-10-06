@@ -107,9 +107,12 @@ const useNetwork = onChange => {
   const handleChange = () => {
     if(typeof onChange === "function"){
       onChange(navigator.onLine);
+      // onChange function 수행
     }
     setStatus(navigator.onLine);
+    // set status
   };
+
   useEffect(()=>{
     window.addEventListener("online", handleChange);
     window.addEventListener("offline", handleChange);
@@ -118,6 +121,8 @@ const useNetwork = onChange => {
       window.removeEventListener("offline", handleChange);
     }
   },[]);
+  // event발생한 대로 function 수행
+
   return status;
 }
 

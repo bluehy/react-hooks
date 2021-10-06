@@ -22,10 +22,10 @@ Collection of React Hooks ready to install with NPM
    <!-- 유저가 page를 벗어나는 시점(브라우저화면에서 마우스가 벗어날 때)을 발견하고 함수를 실행하는 기능 -->
 - [x] useFadeIn
    <!-- 어떤 element든 상관없이 애니메이션을 Element에 적용할 수 있는 hook제작. 서서히 페이드인 -->
+- [x] useNetwork
+   <!-- online offline 감지 -->
 - [ ] useFullscreen
    <!-- element를 풀스크린으로 만들거나 일반화면으로 -->
-- [ ] useNetwork
-   <!-- online offline 감지 -->
 - [ ] useNotification
    <!-- notification API를 사용할 때 유저에게 알림을 보내준다. -->
 - [ ] useScroll
