@@ -7,6 +7,10 @@ import useTabs  from "./useTabs";
 import UseTitleApp from "./useTitle";
 import useClick from "./useClick";
 import useConfirm from "./useConfirm";
+import usePreventLeave from "./usePreventLeave";
+import useBeforeLeave from "./useBeforeLeave";
+import useFadeIn from "./useFadeIn";
+import useNetwork from "./useNetwork";
 
 const Category = styled.h2`
   font-size: 32px;
@@ -17,114 +21,16 @@ const Category = styled.h2`
 `;
 
 const Example = styled.h3`
-  font-size: 18px;
+  font-size: 24px;
+  background-color: #FAEEE0;
   color: #1C0C5B;
-  text-shadow: 1px 1px 2px blueviolet;
+  width: 300px;
+  text-align: center;
 `;
 
-// 
-// class App extends React.Component {
-//   // state
-//   state={
-//     count: 0
-//   }
 
-//   // function
-//   modify = (n) => {
-//     this.setState({
-//       count: n
-//     })
-//   }
+//++++++ use Hooks++++++
 
-//   // render
-//   render(){
-//     const {count} = this.state;
-//     return( 
-//     <>
-//     <div>{count}</div>
-//     <button onClick={()=> this.modify(count + 1)}>Increment</button>
-//     </>
-//     )
-//   }
-// }
-
-//++++++ use Hooks+++++++
-
-// +++++++++++++usePreventLeave++++++++++
-const usePreventLeave = () => {
-  const listener = (e) => {
-    e.preventDefault();
-    // 페이지를 나가기 전에 작동될 수 있게끔 해주고,
-    e.returnValue = "";
-    // 이 코드가 없는 경우, reload한 후에 해당 이벤트가 더 추가가 되지 않는다.
-  }
-  const enablePrevent = () => window.addEventListener("beforeunload", listener);
-  const disablePrevent = () => window.removeEventListener("beforeunload", listener);
-  return {enablePrevent, disablePrevent};
-};
-  
-
-// ++++++++++++useBeforeLeave+++++++++++++
-const useBeforeLeave = (onBefore) => {
-  const handle = (event) => {
-    // console.log("leaving");
-    // console.log(event);
-    const { clientY } = event;
-    if(clientY <= 0 ) {
-      // 위로 벗어났을 때(clientY<=0)에만 function이 작동하게 된다.
-      onBefore();
-    }
-  }
-  useEffect(() => {
-    document.addEventListener("mouseleave", handle);
-    return () => document.removeEventListener("mouseleave",handle);
-  },[]);
-
-  if(typeof onBefore !== "function") {
-    return;
-  }
-};
-
-// +++++++++useFadeIn+++++++++++++++++++++++
-const useFadeIn = (duration = 1, delay = 0) => {
-  const element = useRef();
-  useEffect(()=>{
-    if(typeof duration !== "number" || typeof delay !== "number"){
-      return;
-    }
-    if(element.current){
-      const {current} = element;
-      current.style.transition = `opacity ${duration}s ease-in-out ${delay}s`;
-      current.style.opacity = 1;
-    }
-  },[]);
-  return {ref : element, style: {opacity:0}};
-}
-
-// +++++++++++++useNetwork+++++++++++++++
-const useNetwork = onChange => {
-  const [status, setStatus] = useState(navigator.onLine);
-  const handleChange = () => {
-    if(typeof onChange === "function"){
-      onChange(navigator.onLine);
-      // onChange function 수행
-    }
-    setStatus(navigator.onLine);
-    // set status
-  };
-
-  useEffect(()=>{
-    window.addEventListener("online", handleChange);
-    window.addEventListener("offline", handleChange);
-    return () => {
-      window.removeEventListener("online", handleChange);
-      window.removeEventListener("offline", handleChange);
-    }
-  },[]);
-  // event발생한 대로 function 수행
-
-  return status;
-}
 
 // const App = () => {};
 const App = () => {
@@ -215,6 +121,7 @@ const App = () => {
     }
     const onLine = useNetwork(handleNetworkChange);
 
+
   // return ()
   return (
     <>
@@ -223,14 +130,14 @@ const App = () => {
     <button onClick={()=> setCount(count + 1)}>Increment</button>
     <button onClick={DecrementItem}>Decrement</button>
 
-    <Example># useInput</Example>
+    <Example>useInput</Example>
     {/* <input placeholder="Name" value={name.value} onChange={name.onChange}/> */}
     <input placeholder="Name" {...name}/>
     {/* spread 연산자  */}
     {/* <input placeholder="Email" value={email} onChange={updateEmail} /> */}
     <input placeholder="Email" {...email} />
 
-    <Example># useTabs</Example>
+    <Example>useTabs</Example>
     {content.map((section, index) => <button onClick={()=>changeItem(index)}>{section.tab}</button>)}
     <div>{currentTab.content}</div>
 
@@ -241,26 +148,34 @@ const App = () => {
     <Category>useRef</Category>
     <input ref={input} placeholder="la" />
 
-    <Category>useClick</Category>
+    <Example>useClick</Example>
     <h3 ref={title}>Hi</h3>
 
-    <Category>useConfirm</Category>
+    <Example>useConfirm</Example>
     <button onClick={confirmDelete}>Delete the world</button>
 
-    <Category>usePreventLeave</Category>
+    <Example>usePreventLeave</Example>
     <button onClick={enablePrevent}>Protect</button>
     {/* ↑ 버튼을 클릭시 이벤트리스너가 추가되어 이후 페이지를 닫을 때, 확인하는 문구가 출력된다. */}
     <button onClick={disablePrevent}>Unprotect</button>
 
-    <Category>useBeforeLeave</Category>
+    <Example>useBeforeLeave</Example>
     <h3>Hello</h3>
 
-    <Category>useFadeIn</Category>
+    <Example>useFadeIn</Example>
     <h3 {...fadeInH3}>Hello</h3>
     <p {...fadeInP}>lorem ipsum...</p>
 
-    <Category>useNetwork</Category>
+    <Example>useNetwork</Example>
     <h3>{onLine ? "Online": "Offline"}</h3>
+
+    <Example>useScroll</Example>
+
+    <Example>useFullscreen</Example>
+    
+    <Example>useNotification</Example>
+    
+    <Example>useAxios</Example>
     </>
   )
 }
