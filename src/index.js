@@ -101,7 +101,27 @@ const useFadeIn = (duration = 1, delay = 0) => {
   return {ref : element, style: {opacity:0}};
 }
 
+// +++++++++++++useNetwork+++++++++++++++
+const useNetwork = onChange => {
+  const [status, setStatus] = useState(navigator.onLine);
+  const handleChange = () => {
+    if(typeof onChange === "function"){
+      onChange(navigator.onLine);
+    }
+    setStatus(navigator.onLine);
+  };
+  useEffect(()=>{
+    window.addEventListener("online", handleChange);
+    window.addEventListener("offline", handleChange);
+    return () => {
+      window.removeEventListener("online", handleChange);
+      window.removeEventListener("offline", handleChange);
+    }
+  },[]);
+  return status;
+}
 
+// const App = () => {};
 const App = () => {
   // ++++++++++Hooks_useState++++++++++++++++
   const [count, setCount] = useState(0);
@@ -184,6 +204,10 @@ const App = () => {
     const fadeInH3 = useFadeIn(2);
     const fadeInP = useFadeIn(2,2);
 
+  // +++++++++++++useNetwork+++++++++++++++
+    const onLine = useNetwork();
+
+  // return ()
   return (
     <>
     <Category>useState</Category>
@@ -227,6 +251,8 @@ const App = () => {
     <h3 {...fadeInH3}>Hello</h3>
     <p {...fadeInP}>lorem ipsum...</p>
 
+    <Category>useNetwork</Category>
+    <h3>{onLine ? "Online": "Offline"}</h3>
     </>
   )
 }
