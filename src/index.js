@@ -85,6 +85,19 @@ const useBeforeLeave = (onBefore) => {
   }
 };
 
+// +++++++++useFadeIn+++++++++++++++++++++++
+const useFadeIn = () => {
+  const element = useRef();
+  useEffect(()=>{
+    if(element.current){
+      const {current} = element;
+      current.style.transition = `opacity 3s`;
+      current.style.opacity = 1;
+    }
+  },[]);
+  return {ref : element, style: {opacity:0}};
+}
+
 
 const App = () => {
   // ++++++++++Hooks_useState++++++++++++++++
@@ -162,7 +175,12 @@ const App = () => {
   // ++++++++++useBeforeLeave +++++++++++++++++
     const begForLife = () => console.log("Pls don't leave.");
     useBeforeLeave(begForLife);
-  
+
+    
+  // +++++++++useFadeIn++++++++++++++++++++++++
+    const fadeInH3 = useFadeIn();
+    const fadeInP = useFadeIn();
+
   return (
     <>
     <Category>useState</Category>
@@ -201,6 +219,10 @@ const App = () => {
 
     <Category>useBeforeLeave</Category>
     <h3>Hello</h3>
+
+    <Category>useFadeIn</Category>
+    <h3 {...fadeInH3}>Hello</h3>
+    <p {...fadeInP}>lorem ipsum...</p>
 
     </>
   )
