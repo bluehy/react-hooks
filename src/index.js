@@ -11,6 +11,7 @@ import usePreventLeave from "./usePreventLeave";
 import useBeforeLeave from "./useBeforeLeave";
 import useFadeIn from "./useFadeIn";
 import useNetwork from "./useNetwork";
+import { isElementOfType } from "react-dom/test-utils";
 
 const Category = styled.h2`
   font-size: 32px;
@@ -52,8 +53,18 @@ const useScroll = () => {
   });
 
   return state;
-}
+};
 
+// +++++++++++++++++++++++useFullscreen++++++++++++++++++
+const useFullscreen = () => {
+  const element = useRef();
+  const triggerFull = () => {
+    if(element.current) {
+      element.current.requestFullscreen();
+    }
+  }
+  return {element, triggerFull};
+};
 
 // const App = () => {};
 const App = () => {
@@ -148,6 +159,10 @@ const App = () => {
   // +++++++++++++++useScroll+++++++++++++++++++
     const { y } = useScroll();
 
+
+  // +++++++++++++++++++++++useFullscreen++++++++++++++++++
+  const {element, triggerFull} = useFullscreen();
+
   // return ()
   return (
     <>
@@ -199,7 +214,9 @@ const App = () => {
     <h3 style={{color: y > 450 ? "red" : "blue"}}>useScroll</h3>
 
     <Example>useFullscreen</Example>
-    
+    <img ref={element} style={{width: "200px"}}src="https://images.unsplash.com/photo-1537420327992-d6e192287183?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=988&q=80"/>
+    <button onClick={triggerFull}>Make fullscreen</button>
+
     <Example>useNotification</Example>
     
     <Example>useAxios</Example>
