@@ -62,8 +62,11 @@ const useFullscreen = () => {
     if(element.current) {
       element.current.requestFullscreen();
     }
-  }
-  return {element, triggerFull};
+  };
+  const exitF = () => {
+    document.exitFullscreen();
+  };
+  return {element, triggerFull, exitF};
 };
 
 // const App = () => {};
@@ -161,7 +164,7 @@ const App = () => {
 
 
   // +++++++++++++++++++++++useFullscreen++++++++++++++++++
-  const {element, triggerFull} = useFullscreen();
+  const {element, triggerFull, exitF} = useFullscreen();
 
   // return ()
   return (
@@ -214,7 +217,10 @@ const App = () => {
     <h3 style={{color: y > 450 ? "red" : "blue"}}>useScroll</h3>
 
     <Example>useFullscreen</Example>
-    <img ref={element} style={{width: "200px"}}src="https://images.unsplash.com/photo-1537420327992-d6e192287183?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=988&q=80"/>
+    <div ref={element} >
+    <img style={{width: "200px"}} src="https://images.unsplash.com/photo-1537420327992-d6e192287183?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=988&q=80"/>
+    <button onClick={exitF}>Exit</button>
+    </div>
     <button onClick={triggerFull}>Make fullscreen</button>
 
     <Example>useNotification</Example>
