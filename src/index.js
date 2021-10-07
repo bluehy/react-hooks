@@ -39,7 +39,11 @@ const useScroll = () => {
 
   const onScroll = () => {
     console.log("y" , window.scrollY, "x" , window.scrollX);
-  }
+    setState({
+      x: window.scrollX,
+      y: window.scrollY
+    })
+  };
 
   useEffect(() => {
     window.addEventListener("scroll", onScroll);
@@ -101,9 +105,9 @@ const App = () => {
   // ++++++++++Hooks_useRef+++++++++++++++
   const input = useRef();
   // component의 부분을 선택할 수 있는 방법 (document.getElementByID()와 같은 기능) _ hrml에 접근이 가능.
-  setTimeout(()=> console.log(input), 5000)
-  setTimeout(()=> console.log(input.current), 5000)
-  setTimeout(()=> console.log(input.current.focus()), 5000)
+  // setTimeout(()=> console.log(input), 5000)
+  // setTimeout(()=> console.log(input.current), 5000)
+  // setTimeout(()=> console.log(input.current.focus()), 5000)
   // input으로 focus된다.
 
   // +++++++++++useClick+++++++++++++++++++++
@@ -192,7 +196,7 @@ const App = () => {
     <h3>{onLine ? "Online": "Offline"}</h3>
 
     <Example>useScroll</Example>
-    <h3 style={{color: y > 1000 ? "red" : "blue"}}>useScroll</h3>
+    <h3 style={{color: y > 450 ? "red" : "blue"}}>useScroll</h3>
 
     <Example>useFullscreen</Example>
     
