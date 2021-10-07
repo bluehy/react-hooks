@@ -30,6 +30,24 @@ const Example = styled.h3`
 
 
 //++++++ use Hooks++++++
+// +++++useScroll+++++
+const useScroll = () => {
+  const [state, setState ] = useState({
+    x: 0,
+    y: 0
+  });
+
+  const onScroll = (e) => {
+    console.log(e);
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+    // event를 추가했으면, 같은 이름과 같은 handler로 지워주는 과정을 잊지 말것.
+  })
+  return state;
+}
 
 
 // const App = () => {};
@@ -122,6 +140,9 @@ const App = () => {
     const onLine = useNetwork(handleNetworkChange);
 
 
+  // +++++++++++++++useScroll+++++++++++++++++++
+    const { y } = useScroll();
+
   // return ()
   return (
     <>
@@ -170,6 +191,7 @@ const App = () => {
     <h3>{onLine ? "Online": "Offline"}</h3>
 
     <Example>useScroll</Example>
+    <h3 style={{color: y > 1000 ? "red" : "blue"}}>useScroll</h3>
 
     <Example>useFullscreen</Example>
     
