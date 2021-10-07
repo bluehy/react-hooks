@@ -56,18 +56,25 @@ const useScroll = () => {
 };
 
 // +++++++++++++++++++++++useFullscreen++++++++++++++++++
-const useFullscreen = () => {
+const useFullscreen = (callback) => {
   const element = useRef();
   const triggerFull = () => {
     if(element.current) {
       element.current.requestFullscreen();
+      if(callback && typeof callback === "function"){
+        callback(true);
+      }
     }
   };
   const exitF = () => {
     document.exitFullscreen();
+    if(callback && typeof callback === "function"){
+      callback(false);
+    }
   };
   return {element, triggerFull, exitF};
 };
+
 
 // const App = () => {};
 const App = () => {
@@ -164,7 +171,10 @@ const App = () => {
 
 
   // +++++++++++++++++++++++useFullscreen++++++++++++++++++
-  const {element, triggerFull, exitF} = useFullscreen();
+  const onFulls = (isFull) => {
+    console.log(isFull ? "We are FUll" : "We are smol");
+  }
+  const {element, triggerFull, exitF} = useFullscreen(onFulls);
 
   // return ()
   return (
