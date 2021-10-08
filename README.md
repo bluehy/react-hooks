@@ -28,9 +28,9 @@ Collection of React Hooks ready to install with NPM
    <!-- 스크롤동작 감지 -->
 - [x] useFullscreen
    <!-- element를 풀스크린으로 만들거나 일반화면으로 -->
-- [ ] useNotification
+- [x] useNotification
    [Notification API](https://developer.mozilla.org/ko/docs/Web/API/notification)
-   <!-- notification API를 사용할 때 유저에게 알림을 보내준다. -->
+   <!-- notification API를 사용할 때 유저에게 알림을 보내준다. 알림에 원하는 정보를 담아 전달할 수 있다.-->
 - [ ] useAxios
    <!-- HTTP requests client axios 를 위한 일종의 wrapper. axios를 둘러싸는? 기능 -->
 
