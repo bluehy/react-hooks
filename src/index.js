@@ -92,6 +92,28 @@ const useFullscreen = (callback) => {
   return {element, triggerFull, exitF};
 };
 
+// +++++++++++++++++++++++useNotification++++++++++++++++++
+// Notification API : https://developer.mozilla.org/ko/docs/Web/API/notification
+const useNotification = (title, options) => {
+  if(!("Notification" in window)){
+    return;
+  }
+  const fireNotif = () => {
+    if(Notification.permission !== "granted"){
+      Notification.requestPermission().then(permission => {
+        if(permission === "granted"){
+          new Notification(title, options);
+        }else{
+          return;
+        }
+      });
+    }else{
+      new Notification(title, options);
+    }
+  };
+  return fireNotif;
+};
+
 
 // const App = () => {};
 const App = () => {
@@ -192,6 +214,9 @@ const App = () => {
     console.log(isFull ? "We are FUll" : "We are smol");
   }
   const {element, triggerFull, exitF} = useFullscreen(onFulls);
+
+  // +++++++++++++++++++++++useNotification++++++++++++++++++
+  const triggerNotif = useNotification();
 
   // return ()
   return (
