@@ -216,7 +216,7 @@ const App = () => {
   const {element, triggerFull, exitF} = useFullscreen(onFulls);
 
   // +++++++++++++++++++++++useNotification++++++++++++++++++
-  const triggerNotif = useNotification();
+  const triggerNotif = useNotification("Can I steal your card?");
 
   // return ()
   return (
@@ -276,6 +276,7 @@ const App = () => {
     <button onClick={triggerFull}>Make fullscreen</button>
 
     <Example>useNotification</Example>
+    <button onClick={triggerNotif}>Notification</button>
     
     <Example>useAxios</Example>
     </>
