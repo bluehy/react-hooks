@@ -216,7 +216,9 @@ const App = () => {
   const {element, triggerFull, exitF} = useFullscreen(onFulls);
 
   // +++++++++++++++++++++++useNotification++++++++++++++++++
-  const triggerNotif = useNotification("Can I steal your card?");
+  const triggerNotif = useNotification("Can I steal your card?",{
+    body: "I love card game."
+  });
 
   // return ()
   return (
