@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from "react";
+import {useRef, useEffect} from "react";
 
 // +++++++++useFadeIn+++++++++++++++++++++++
 const useFadeIn = (duration = 1, delay = 0) => {

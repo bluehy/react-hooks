@@ -1,5 +1,3 @@
-import React from "react";
-import ReactDOM from "react-dom";
 
   // ++++++++++++useConfirm++++++++++++++++++++
   // useEffect, useState를 사용하지 않는 함수형 function

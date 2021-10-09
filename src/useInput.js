@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import {useState} from "react";
 // useInput
   // value값을 검증하는 검증 단계 추가
   const useInput = (initialValue, validator) => {
