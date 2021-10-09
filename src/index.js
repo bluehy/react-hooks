@@ -12,6 +12,8 @@ import useBeforeLeave from "./useBeforeLeave";
 import useFadeIn from "./useFadeIn";
 import useNetwork from "./useNetwork";
 import useScroll from "./useScroll";
+import useFullscreen from "./useFullscreen";
+
 
 const Category = styled.h2`
   font-size: 32px;
@@ -31,43 +33,6 @@ const Example = styled.h3`
 
 
 //++++++ use Hooks++++++
-
-// +++++++++++++++++++++++useFullscreen++++++++++++++++++
-const useFullscreen = (callback) => {
-  const element = useRef();
-  const runCb = isFull => {
-    if(callback && typeof callback === "function"){
-      callback(isFull);
-    }
-  }
-  const triggerFull = () => {
-    if(element.current) {
-      if(element.current.requestFullscreen){
-        element.current.requestFullscreen();
-      }else if (element.current.mozRequestFullscreen){
-        element.current.mozRequestFullscreen();
-      }else if (element.current.webkitRequestFullscreen){
-        element.current.webkitRequestFullscreen();
-      }else if (element.current.msRequestFullscreen){
-        element.current.msRequestFullscreen();
-      }
-      runCb(true);
-    }
-  };
-  const exitF = () => {
-    if(document.exitFullscreen) {
-      document.exitFullscreen();
-    }else if (document.mozCancelFullscreen){
-      document.mozCancelFullscreen();
-    }else if (document.webkitExitFullscreen){
-      document.webkitExitFullscreen();
-    }else if (document.msExitFullscreen){
-      document.msExitFullscreen();
-    }
-    runCb(false);
-  };
-  return {element, triggerFull, exitF};
-};
 
 // +++++++++++++++++++++++useNotification++++++++++++++++++
 // Notification API : https://developer.mozilla.org/ko/docs/Web/API/notification
