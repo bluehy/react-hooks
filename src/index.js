@@ -143,8 +143,10 @@ const App = () => {
   
   
   // ++++++++++++++++++useAXios++++++++++++++++++
-  const {loading, data, error} = useAxios({url: "https://yts.mx/api/v2/list_movies.json"})
-  console.log (`Loading: ${loading}\nError: ${error}\nData:${JSON.stringify(data)}`);
+  const {loading, data, error, refetch} = useAxios({url: "https://yts.mx/api/v2/list_movies.json"})
+  // console.log (`Loading: ${loading}\nError: ${error}\nData:${JSON.stringify(data)}`);
+
+
   // return ()
   return (
     <>
@@ -206,6 +208,9 @@ const App = () => {
     <button onClick={triggerNotif}>Notification</button>
     
     <Example>useAxios</Example>
+    <h3>{data && data.status}</h3>
+    <h3>{loading && "Loading"}</h3>
+    <button onClick={refetch}>REFETCH</button>
     </>
   )
 }
