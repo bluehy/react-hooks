@@ -1,6 +1,8 @@
 import {useState, useEffect} from "react";
 import defaultAxios from "axios";
 // Axios: make HTTPrequest
+// Axios allows you to create an instance, for example to set defaults like baseUrl, or headers,
+// https://github.com/axios/axios#creating-an-instance
 
 // ++++++++++++++++++useAXios++++++++++++++++++
 
@@ -20,6 +22,7 @@ const useAxios = (opts, axiosInstance = defaultAxios) => {
       setTrigger(new Date());
       // new Date task 랜덤한 숫자를 생성해냄.
    }
+   // Trigger will re render that hook, use you change the state it will re render the whole component and maybe you don't want that.
 
    useEffect(()=> {
       axiosInstance(opts).then(data =>{
