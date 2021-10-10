@@ -14,6 +14,7 @@ import useNetwork from "./useNetwork";
 import useScroll from "./useScroll";
 import useFullscreen from "./useFullscreen";
 import useNotification from "./useNotification";
+import useAxios from "./useAxios";
 
 const Category = styled.h2`
   font-size: 32px;
@@ -139,7 +140,11 @@ const App = () => {
   const triggerNotif = useNotification("Can I steal your card?",{
     body: "I love card game."
   });
-
+  
+  
+  // ++++++++++++++++++useAXios++++++++++++++++++
+  const {loading, data, error} = useAxios({url: "https://yts.mx/api/v2/list_movies.json"})
+  console.log (`Loading: ${loading}\nError: ${error}\nData:${JSON.stringify(data)}`);
   // return ()
   return (
     <>
