@@ -32,7 +32,7 @@ Collection of React Hooks ready to install with NPM
    [Notification API](https://developer.mozilla.org/ko/docs/Web/API/notification)
    <!-- notification API를 사용할 때 유저에게 알림을 보내준다. 알림에 원하는 정보를 담아 전달할 수 있다.-->
    <!-- hook은 아니지만, 함수형 프로그래밍이 가능하다. -->
-- [ ] useAxios
+- [x] useAxios
    <!-- HTTP requests client axios 를 위한 일종의 wrapper. axios를 둘러싸는? 기능 -->
 
 
